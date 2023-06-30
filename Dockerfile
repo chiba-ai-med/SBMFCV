@@ -1,9 +1,9 @@
-FROM koki/sbmf_component:latest
+FROM koki/sbmfcv_component:latest
 
 ADD src /src
-ADD sbmf /
+ADD sbmfcv /
 ADD Snakefile /
 
 WORKDIR /
 
-ENTRYPOINT ["/sbmf"]
+ENTRYPOINT ["/sbmfcv"]
