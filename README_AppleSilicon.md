@@ -48,7 +48,7 @@ snakemake --version
 First, download this GitHub repository and change the working directory.
 
 ```bash
-git clone https://github.com/kokitsuyuzaki/SBMFCV.git
+git clone https://github.com/chiba-ai-med/SBMFCV.git
 cd SBMFCV
 ```
 
@@ -92,7 +92,7 @@ If the `docker` command is available, the following command can be performed wit
 
 ```bash
 docker run --platform Linux/amd64 \
---rm -v $(pwd):/work ghcr.io/kokitsuyuzaki/sbmfcv:main \
+--rm -v $(pwd):/work ghcr.io/chiba-ai-med/sbmfcv:main \
 -i /work/data/testdata.tsv -o /work/output \
 --cores=4 --rank_min=1 --rank_max=10 \
 --lambda_min=-10 --lambda_max=10 --trials=50 \
