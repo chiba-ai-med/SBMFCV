@@ -2,13 +2,13 @@
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥7.30.1-brightgreen.svg)](https://snakemake.github.io)
 [![DOI](https://zenodo.org/badge/571380791.svg)](https://zenodo.org/badge/latestdoi/571380791)
-![GitHub Actions](https://github.com/kokitsuyuzaki/SBMFCV/actions/workflows/build_test_push.yml/badge.svg)
-![GitHub Actions](https://github.com/kokitsuyuzaki/SBMFCV/actions/workflows/dockerrun1.yml/badge.svg)
-![GitHub Actions](https://github.com/kokitsuyuzaki/SBMFCV/actions/workflows/dockerrun2.yml/badge.svg)
-![GitHub Actions](https://github.com/kokitsuyuzaki/SBMFCV/actions/workflows/dockerrun3.yml/badge.svg)
-![GitHub Actions](https://github.com/kokitsuyuzaki/SBMFCV/actions/workflows/unittest1.yml/badge.svg)
-![GitHub Actions](https://github.com/kokitsuyuzaki/SBMFCV/actions/workflows/unittest2.yml/badge.svg)
-![GitHub Actions](https://github.com/kokitsuyuzaki/SBMFCV/actions/workflows/release-please.yml/badge.svg)
+![GitHub Actions](https://github.com/chiba-ai-med/SBMFCV/actions/workflows/build_test_push.yml/badge.svg)
+![GitHub Actions](https://github.com/chiba-ai-med/SBMFCV/actions/workflows/dockerrun1.yml/badge.svg)
+![GitHub Actions](https://github.com/chiba-ai-med/SBMFCV/actions/workflows/dockerrun2.yml/badge.svg)
+![GitHub Actions](https://github.com/chiba-ai-med/SBMFCV/actions/workflows/dockerrun3.yml/badge.svg)
+![GitHub Actions](https://github.com/chiba-ai-med/SBMFCV/actions/workflows/unittest1.yml/badge.svg)
+![GitHub Actions](https://github.com/chiba-ai-med/SBMFCV/actions/workflows/unittest2.yml/badge.svg)
+![GitHub Actions](https://github.com/chiba-ai-med/SBMFCV/actions/workflows/release-please.yml/badge.svg)
 
 Cross validation workflow of Semi-binary Matrix Factorization (SBMF)
 
@@ -16,7 +16,7 @@ Cross validation workflow of Semi-binary Matrix Factorization (SBMF)
 
 `SBMFCV` consists of the rules below:
 
-![](https://github.com/kokitsuyuzaki/SBMFCV/blob/main/plot/dag.png?raw=true)
+![](https://github.com/chiba-ai-med/SBMFCV/blob/main/plot/dag.png?raw=true)
 
 # Pre-requisites (our experiment)
 - Snakemake: v7.30.1
@@ -46,7 +46,7 @@ In this demo, we use a toy data matrix (data/testdata.tsv) consisting of 1280 sa
 First, download this GitHub repository and change the working directory.
 
 ```bash
-git clone https://github.com/kokitsuyuzaki/SBMFCV.git
+git clone https://github.com/chiba-ai-med/SBMFCV.git
 cd SBMFCV
 ```
 
@@ -112,7 +112,7 @@ If the `docker` command is available, the following command can be performed wit
 **Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=2 lambda_max=2 lambda_min=2 trials=2 n_iter_max=2.**
 
 ```bash
-docker run --rm -v $(pwd):/work ghcr.io/kokitsuyuzaki/sbmfcv:main \
+docker run --rm -v $(pwd):/work ghcr.io/chiba-ai-med/sbmfcv:main \
 -i /work/data/testdata.tsv -o /work/output \
 --cores=4 --rank_min=1 --rank_max=10 \
 --lambda_min=1 --lambda_max=10 --trials=50 \
