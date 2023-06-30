@@ -5,7 +5,7 @@ import os
 # Setting
 #################################
 # Minimum Version of Snakemake
-min_version("7.25.0")
+min_version("7.30.1")
 
 # Required Arguments
 INPUT = config["input"]
