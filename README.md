@@ -59,7 +59,7 @@ Next, perform `SBMFCV` by the `snakemake` command as follows.
 ```bash
 snakemake -j 4 --config input=data/testdata.tsv outdir=output rank_min=2 \
 rank_max=10 lambda_min=-10 lambda_max=10 trials=10 \
-n_iter_max=100 ratio=5 --resources mem_gb=10 --use-singularity
+n_iter_max=100 ratio=20 --resources mem_gb=10 --use-singularity
 ```
 
 The meanings of all the arguments are below.
@@ -88,7 +88,7 @@ If the `GridEngine` (`qsub` command) is available in your environment, you can a
 ```bash
 snakemake -j 4 --config input=data/testdata.tsv outdir=output rank_min=2 \
 rank_max=10 lambda_min=-10 lambda_max=10 trials=10 \
-n_iter_max=100 ratio=5 --resources mem_gb=10 --use-singularity \
+n_iter_max=100 ratio=20 --resources mem_gb=10 --use-singularity \
 --cluster "qsub -l nc=4 -p -50 -r yes" --latency-wait 60
 ```
 
@@ -101,7 +101,7 @@ Likewise, if the `Slurm` (`sbatch` command) is available in your environment, yo
 ```bash
 snakemake -j 4 --config input=data/testdata.tsv outdir=output rank_min=2 \
 rank_max=10 lambda_min=-10 lambda_max=10 trials=10 \
-n_iter_max=100 ratio=5 --resources mem_gb=10 --use-singularity \
+n_iter_max=100 ratio=20 --resources mem_gb=10 --use-singularity \
 --cluster "sbatch -n 4 --nice=50 --requeue" --latency-wait 60
 ```
 
@@ -116,7 +116,7 @@ docker run --rm -v $(pwd):/work ghcr.io/chiba-ai-med/sbmfcv:main \
 -i /work/data/testdata.tsv -o /work/output \
 --cores=4 --rank_min=1 --rank_max=10 \
 --lambda_min=1 --lambda_max=10 --trials=50 \
---n_iter_max=1000 --ratio=30 --memgb=10
+--n_iter_max=100 --ratio=20 --memgb=10
 ```
 
 # Reference
