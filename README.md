@@ -114,8 +114,8 @@ If the `docker` command is available, the following command can be performed wit
 ```bash
 docker run --rm -v $(pwd):/work ghcr.io/chiba-ai-med/sbmfcv:main \
 -i /work/data/testdata.tsv -o /work/output \
---cores=4 --rank_min=1 --rank_max=10 \
---lambda_min=1 --lambda_max=10 --trials=50 \
+--cores=4 --rank_min=2 --rank_max=10 \
+--lambda_min=-10 --lambda_max=10 --trials=10 \
 --n_iter_max=100 --ratio=20 --memgb=10
 ```
 

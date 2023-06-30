@@ -3,30 +3,30 @@
 # Help page
 showHelp() {
     cat << EOF
-Usage: ./tensorlycv -i <input-file> -o <output-directory> [--cores/--rank_min/--rank_max/--lambda_min/--lambda_max/--trials/--n_iter_max/--ratio/--memgb/-h/-v]
+Usage: ./sbmfcv -i <input-file> -o <output-directory> [--cores/--rank_min/--rank_max/--lambda_min/--lambda_max/--trials/--n_iter_max/--ratio/--memgb/-h/-v]
 Cross validation workflow of Semi-binary Matrix Factorization (SBMF)
 
-    -i, -input,         --input                 Input file (e.g., data/vaccine_tensor.npy, mandatory)
+    -i, -input,         --input                 Input file (e.g., data/testdata.tsv, mandatory)
 
     -o, -outdir,        --outdir                Output directory (e.g., output, mandatory)
 
-    -c, -cores,         --cores                 Number of cores to use Snakemake (e.g., default value is 10, optional)
+    -c, -cores,         --cores                 Number of cores to use Snakemake (Default value is 10, optional)
 
-    -l, -rank_min,          --rank_min                  Lower limit of rank parameter to search (e.g., 2, which is used for the rank parameter J of dNMF, mandatory)
+    -l, -rank_min,          --rank_min                  Lower limit of rank parameter to search (Default value is 2, which is used for the rank parameter J of dNMF, mandatory)
 
-    -u, -rank_max,          --rank_max                  Upper limit of rank parameter to search (e.g., 10, which is used for the rank parameter J of dNMF, mandatory)
+    -u, -rank_max,          --rank_max                  Upper limit of rank parameter to search (Default value is 10, which is used for the rank parameter J of dNMF, mandatory)
 
-    -b, -lambda_min,          --lambda_min                  Lower limit of lambda parameter to search (e.g., -10, which means 10^-10 is used for the binary regularization parameter Bin_U of dNMF, mandatory)
+    -b, -lambda_min,          --lambda_min                  Lower limit of lambda parameter to search (Default value is -10, which means 10^-10 is used for the binary regularization parameter Bin_U of dNMF, mandatory)
 
-    -d, -lambda_max,          --lambda_max                  Upper limit of lambda parameter to search (e.g., -10, which means 10^10 is used for the binary regularization parameter Bin_U of dNMF, mandatory)
+    -d, -lambda_max,          --lambda_max                  Upper limit of lambda parameter to search (Default value is 10, which means 10^10 is used for the binary regularization parameter Bin_U of dNMF, mandatory)
 
-    -t, -trials,        --trials                Number of random trials (e.g., default value is 50, optional)
+    -t, -trials,        --trials                Number of random trials (Default value is 10, optional)
 
-    -e, -n_iter_max,         --n_iter_max                 Number of iterations (e.g., default value is 1000, optional)
+    -e, -n_iter_max,         --n_iter_max                 Number of iterations (Default value is 100, optional)
 
-    -a, -ratio,         --ratio                 Sampling ratio of cross validation (0 - 100, e.g., default value is 20, optional)
+    -a, -ratio,         --ratio                 Sampling ratio of cross validation (0 - 100, Default value is 20, optional)
 
-    -m, -memgb,         --memgb                 Memory usage (GB, e.g., default value is 10, optional)
+    -m, -memgb,         --memgb                 Memory usage (GB, Default value is 10, optional)
 
     -h, -help,          --help                  Display help
 
@@ -43,9 +43,9 @@ RANK_MIN=2
 RANK_MAX=10
 LAMBDA_MIN=-10
 LAMBDA_MAX=10
-TRIALS=50
+TRIALS=10
 N_ITER_MAX=100
-RATIO=30
+RATIO=20
 MEMGB=10
 VERSION="v1.0.0"
 
