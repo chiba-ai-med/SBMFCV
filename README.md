@@ -9,6 +9,7 @@
 ![GitHub Actions](https://github.com/chiba-ai-med/SBMFCV/actions/workflows/unittest1.yml/badge.svg)
 ![GitHub Actions](https://github.com/chiba-ai-med/SBMFCV/actions/workflows/unittest2.yml/badge.svg)
 ![GitHub Actions](https://github.com/chiba-ai-med/SBMFCV/actions/workflows/release-please.yml/badge.svg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fchiba-ai-med%2FSBMFCV.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fchiba-ai-med%2FSBMFCV?ref=badge_shield)
 
 Cross validation workflow of Semi-binary Matrix Factorization (SBMF)
 
@@ -125,3 +126,7 @@ docker run --rm -v $(pwd):/work ghcr.io/chiba-ai-med/sbmfcv:main \
 # Authors
 - Koki Tsuyuzaki
 - Eiryo Kawakami
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fchiba-ai-med%2FSBMFCV.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fchiba-ai-med%2FSBMFCV?ref=badge_large)
