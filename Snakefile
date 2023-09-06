@@ -58,7 +58,8 @@ rule nmf:
 		in1=INPUT,
 		in2=OUTDIR + '/CHECK_NONNEGATIVE'
 	output:
-		OUTDIR + '/nmf/{rank}/{t}.txt'
+		OUTDIR + '/nmf/{rank}/{t}_error.txt',
+		OUTDIR + '/nmf/{rank}/{t}.RData'
 	benchmark:
 		OUTDIR + '/benchmarks/nmf_{rank}_{t}.txt'
 	log:
@@ -68,7 +69,7 @@ rule nmf:
 
 rule aggregate_nmf:
 	input:
-		expand(OUTDIR + '/nmf/{rank}/{t}.txt',
+		expand(OUTDIR + '/nmf/{rank}/{t}_error.txt',
 			rank=RANK_INDEX, t=TRIAL_INDEX)
 	output:
 		OUTDIR + '/nmf/test_errors.csv'
@@ -111,7 +112,8 @@ rule sbmf:
 		INPUT,
 		OUTDIR + '/nmf/bestrank.txt'
 	output:
-		OUTDIR + '/sbmf/{l}/{t}.txt'
+		OUTDIR + '/sbmf/{l}/{t}_error.txt',
+		OUTDIR + '/sbmf/{l}/{t}.RData'
 	benchmark:
 		OUTDIR + '/benchmarks/sbmf_{l}_{t}.txt'
 	log:
@@ -121,7 +123,7 @@ rule sbmf:
 
 rule aggregate_sbmf:
 	input:
-		expand(OUTDIR + '/sbmf/{l}/{t}.txt',
+		expand(OUTDIR + '/sbmf/{l}/{t}_error.txt',
 			l=LAMBDA_INDEX, t=TRIAL_INDEX)
 	output:
 		OUTDIR + '/sbmf/zero_one_percentage.csv'
