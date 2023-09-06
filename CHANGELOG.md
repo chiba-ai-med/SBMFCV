@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/chiba-ai-med/SBMFCV/compare/v1.0.3...v1.1.0) (2023-09-06)
+
+
+### Features
+
+* intermediate object in each rank/lambda ([1c32b28](https://github.com/chiba-ai-med/SBMFCV/commit/1c32b2810ceeffc193802aa10902b833353da5b3))
+
 ## [1.0.3](https://github.com/chiba-ai-med/SBMFCV/compare/v1.0.2...v1.0.3) (2023-09-02)
 
 
