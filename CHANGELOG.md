@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.1](https://github.com/chiba-ai-med/SBMFCV/compare/v1.1.0...v1.1.1) (2023-09-06)
+
+
+### Bug Fixes
+
+* aggregate ([3f8372d](https://github.com/chiba-ai-med/SBMFCV/commit/3f8372da3742cdd608349656b849537bebb7b4b4))
+* aggregate ([a96e150](https://github.com/chiba-ai-med/SBMFCV/commit/a96e150f4176ea897f9c9e0952cb897bfe4683c9))
+* Debug test ([12fcea8](https://github.com/chiba-ai-med/SBMFCV/commit/12fcea8b57e09d63abb22019fa66f6c2326de997))
+
 ## [1.1.0](https://github.com/chiba-ai-med/SBMFCV/compare/v1.0.3...v1.1.0) (2023-09-06)
 
 
