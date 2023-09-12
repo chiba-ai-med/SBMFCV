@@ -150,7 +150,7 @@ rule bestlambda:
 	input:
 		OUTDIR + '/sbmf/zero_one_percentage.csv'
 	output:
-		OUTDIR + '/snmf/bestlambda.txt'
+		OUTDIR + '/sbmf/bestlambda.txt'
 	benchmark:
 		OUTDIR + '/benchmarks/bestlambda.txt'
 	log:
@@ -165,7 +165,7 @@ rule bestrank_bestlambda_sbmf:
 	input:
 		INPUT,
 		OUTDIR + '/nmf/bestrank.txt',
-		OUTDIR + '/snmf/bestlambda.txt'
+		OUTDIR + '/sbmf/bestlambda.txt'
 	output:
 		OUTDIR + '/bestrank_bestlambda_sbmf/{t}.RData'
 	benchmark:

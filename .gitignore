@@ -40,7 +40,10 @@
 .fontconfig
 .snakemake
 data/IsingGen
+data/seurat.RData
+data/seurat.tsv
 output
+output_seurat
 report
 logs
 benchmarks
