@@ -21,6 +21,7 @@ LAMBDA_INDEX = [str(x) for x in list(range(LAMBDA_MIN, LAMBDA_MAX + 1))]
 TRIALS = int(config["trials"])
 TRIAL_INDEX = [str(x) for x in list(range(1, TRIALS+1))]
 N_ITER_MAX = int(config["n_iter_max"])
+BETA = int(config["beta"])
 RATIO = int(config["ratio"])
 
 # Docker Container
@@ -65,7 +66,7 @@ rule nmf:
 	log:
 		OUTDIR + '/logs/nmf_{rank}_{t}.log'
 	shell:
-		'src/nmf.sh {input.in1} {output} {wildcards.rank} {N_ITER_MAX} {RATIO} >& {log}'
+		'src/nmf.sh {input.in1} {output} {wildcards.rank} {N_ITER_MAX} {BETA} {RATIO} >& {log}'
 
 rule aggregate_nmf:
 	input:
@@ -119,7 +120,7 @@ rule sbmf:
 	log:
 		OUTDIR + '/logs/sbmf_{l}_{t}.log'
 	shell:
-		'src/sbmf.sh {input} {output} {wildcards.l} {N_ITER_MAX} >& {log}'
+		'src/sbmf.sh {input} {output} {wildcards.l} {N_ITER_MAX} {BETA} >& {log}'
 
 rule aggregate_sbmf:
 	input:
@@ -173,7 +174,7 @@ rule bestrank_bestlambda_sbmf:
 	log:
 		OUTDIR + '/logs/bestrank_bestlambda_sbmf_{t}.log'
 	shell:
-		'src/bestrank_bestlambda_sbmf.sh {input} {output} {N_ITER_MAX} >& {log}'
+		'src/bestrank_bestlambda_sbmf.sh {input} {output} {N_ITER_MAX} {BETA} >& {log}'
 
 rule aggregate_bestrank_bestlambda_sbmf:
 	input:
