@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/chiba-ai-med/SBMFCV/compare/v1.2.0...v1.3.0) (2024-05-24)
+
+
+### Features
+
+* X_new/U_new ([6205015](https://github.com/chiba-ai-med/SBMFCV/commit/6205015de0a65b016755fd6ac1f998e21b54b19a))
+* X_new/U_new ([71fa0f3](https://github.com/chiba-ai-med/SBMFCV/commit/71fa0f36a05d7c2e63b4cb5a2292724710473598))
+
 ## [1.2.0](https://github.com/chiba-ai-med/SBMFCV/compare/v1.1.2...v1.2.0) (2024-05-20)
 
 
