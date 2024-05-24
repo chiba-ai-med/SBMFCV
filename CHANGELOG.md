@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/chiba-ai-med/SBMFCV/compare/v1.3.1...v1.3.2) (2024-05-24)
+
+
+### Bug Fixes
+
+* debug of bestlambda ([dad13f3](https://github.com/chiba-ai-med/SBMFCV/commit/dad13f37a395644f4c6a747dbacaf823b25f8dcf))
+
 ## [1.3.1](https://github.com/chiba-ai-med/SBMFCV/compare/v1.3.0...v1.3.1) (2024-05-24)
 
 
