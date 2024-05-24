@@ -3,7 +3,7 @@
 # Help page
 showHelp() {
     cat << EOF
-Usage: ./sbmfcv -i <input-file> -o <output-directory> [--cores/--rank_min/--rank_max/--lambda_min/--lambda_max/--trials/--n_iter_max/--x_new/--bin/--beta/--ratio/--memgb/-h/-v]
+Usage: ./sbmfcv -i <input-file> -o <output-directory> [--cores/--rank_min/--rank_max/--lambda_min/--lambda_max/--trials/--n_iter_max/--x_new_list/--bin/--beta/--ratio/--memgb/-h/-v]
 Cross validation workflow of Semi-Binary Matrix Factorization (SBMF)
 
     -i, -input,         --input                 Input file (e.g., data/testdata.tsv, mandatory)
@@ -56,7 +56,7 @@ BIN="TRUE"
 BETA=2
 RATIO=20
 MEMGB=10
-VERSION="v1.3.0"
+VERSION="v1.3.1"
 
 # Command Argument Parsing
 while getopts i:o:c:l:u:b:d:t:e:x:n:p:a:m:h-:v- opt; do
