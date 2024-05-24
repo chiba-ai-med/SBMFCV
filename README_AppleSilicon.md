@@ -63,7 +63,7 @@ Next, perform `SBMFCV` by the `snakemake` command as follows.
 ```bash
 snakemake -j 4 --config input=data/testdata.tsv outdir=output rank_min=2 \
 rank_max=10 lambda_min=-10 lambda_max=10 trials=10 \
-n_iter_max=100 beta=2 ratio=20 --resources mem_gb=10
+n_iter_max=100 x_new_list="" bin=TRUE beta=2 ratio=20 --resources mem_gb=10
 ```
 
 The meanings of all the arguments are below.
@@ -78,6 +78,8 @@ The meanings of all the arguments are below.
 - `lambda_max`: Upper limit of lambda parameter to search (e.g., -10, which means 10^10 is used for the binary regularization parameter Bin_U of dNMF, mandatory)
 - `trials`: Number of random trials (e.g., 10, mandatory)
 - `n_iter_max`: Number of iterations (e.g., 100, mandatory)
+- `x_new_list`: X_new file list to predict U_new values (Default value is "", which means no prediction is performed, optional)
+- `bin`: Whether the binarization of U is perfomed (Default value is TRUE, otherwise FALSE, optional)
 - `beta`: Parameter for Beta-divergence (Default value is 2, optional)
 - `ratio`: Sampling ratio of cross-validation (0 - 100, e.g., 20, mandatory)
 - `--resources`: Snakemake option to control [resources](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#resources) (optional)
@@ -97,7 +99,7 @@ docker run --platform Linux/amd64 \
 -i /work/data/testdata.tsv -o /work/output \
 --cores=4 --rank_min=2 --rank_max=10 \
 --lambda_min=-10 --lambda_max=10 --trials=10 \
---n_iter_max=100 --beta=2 --ratio=20 --memgb=10
+--n_iter_max=100 --x_new_list="" --bin=TRUE --beta=2 --ratio=20 --memgb=10
 ```
 
 # Authors

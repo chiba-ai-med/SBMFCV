@@ -1,5 +1,6 @@
 from snakemake.utils import min_version
 import os
+import pandas as pd
 
 #################################
 # Setting
@@ -21,6 +22,14 @@ LAMBDA_INDEX = [str(x) for x in list(range(LAMBDA_MIN, LAMBDA_MAX + 1))]
 TRIALS = int(config["trials"])
 TRIAL_INDEX = [str(x) for x in list(range(1, TRIALS+1))]
 N_ITER_MAX = int(config["n_iter_max"])
+X_NEW_LIST = str(config["x_new_list"])
+print(X_NEW_LIST)
+if X_NEW_LIST == "None":
+	X_NEWS = "_"
+else:
+	X_NEWS = pd.read_table(X_NEW_LIST, header=None)[0]
+
+BIN = str(config["bin"])
 BETA = int(config["beta"])
 RATIO = int(config["ratio"])
 
@@ -34,7 +43,8 @@ rule all:
 		OUTDIR + '/plot/zero_one_percentage.png',
 		OUTDIR + '/U.tsv',
 		OUTDIR + '/V.tsv',
-		OUTDIR + '/BIN_DATA.tsv'
+		OUTDIR + '/BIN_DATA.tsv',
+		OUTDIR + '/U_new.txt'
 
 #############################################################
 # Non-negative Check
@@ -120,7 +130,7 @@ rule sbmf:
 	log:
 		OUTDIR + '/logs/sbmf_{l}_{t}.log'
 	shell:
-		'src/sbmf.sh {input} {output} {wildcards.l} {N_ITER_MAX} {BETA} >& {log}'
+		'src/sbmf.sh {input} {output} {wildcards.l} {N_ITER_MAX} {BIN} {BETA} >& {log}'
 
 rule aggregate_sbmf:
 	input:
@@ -133,7 +143,7 @@ rule aggregate_sbmf:
 	log:
 		OUTDIR + '/logs/aggregate_sbmf.log'
 	shell:
-		'src/aggregate_sbmf.sh {LAMBDA_MIN} {LAMBDA_MAX} {TRIALS} {OUTDIR} {output} > {log}'
+		'src/aggregate_sbmf.sh {LAMBDA_MIN} {LAMBDA_MAX} {TRIALS} {OUTDIR} {output} {BIN} > {log}'
 
 rule plot_zero_one_percentage:
 	input:
@@ -145,7 +155,7 @@ rule plot_zero_one_percentage:
 	log:
 		OUTDIR + '/logs/plot_zero_one_percentage.log'
 	shell:
-		'src/plot_zero_one_percentage.sh {input} {output} > {log}'
+		'src/plot_zero_one_percentage.sh {input} {output} {BIN} > {log}'
 
 rule bestlambda:
 	input:
@@ -157,7 +167,7 @@ rule bestlambda:
 	log:
 		OUTDIR + '/logs/bestlambda.log'
 	shell:
-		'src/bestlambda.sh {input} {output} > {log}'
+		'src/bestlambda.sh {input} {output} {BIN} > {log}'
 
 #############################################################
 # SBMF with Best Rank and Best Lambda
@@ -216,3 +226,44 @@ rule bindata_for_landscaper:
 		OUTDIR + '/logs/bindata_for_landscaper.log'
 	shell:
 		'src/bindata_for_landscaper.sh {input} {output} > {log}'
+
+#############################################################
+# Prediction of U_new from X_new file list
+#############################################################
+rule check_x_new:
+	input:
+		OUTDIR + '/V.tsv'
+	output:
+		OUTDIR + '/{x_new}/CHECK_X_NEW'
+	benchmark:
+		OUTDIR + '/benchmarks/check_x_new_{x_new}.txt'
+	log:
+		OUTDIR + '/logs/check_x_new_{x_new}.log'
+	shell:
+		'src/check_x_new.sh {wildcards.x_new} {input} {output} >& {log}'
+
+rule predict_u_new:
+	input:
+		OUTDIR + '/{x_new}/CHECK_X_NEW',
+		OUTDIR + '/sbmf/bestlambda.txt',
+		OUTDIR + '/V.tsv'
+	output:
+		OUTDIR + '/{x_new}/U_new.txt'
+	benchmark:
+		OUTDIR + '/benchmarks/predict_{x_new}.txt'
+	log:
+		OUTDIR + '/logs/predict_{x_new}.log'
+	shell:
+		'src/predict.sh {wildcards.x_new} {input} {output} {N_ITER_MAX} {BETA} > {log}'
+
+rule aggregate_u_new:
+	input:
+		expand(OUTDIR + '/{x_new}/U_new.txt', x_new=X_NEWS)
+	output:
+		OUTDIR + '/U_new.txt'
+	benchmark:
+		OUTDIR + '/benchmarks/aggregate_u_new.txt'
+	log:
+		OUTDIR + '/logs/aggregate_u_new.log'
+	shell:
+		'src/aggregate_u_new.sh {input} {output} > {log}'
