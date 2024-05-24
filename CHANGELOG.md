@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/chiba-ai-med/SBMFCV/compare/v1.3.0...v1.3.1) (2024-05-24)
+
+
+### Bug Fixes
+
+* typo ([10d7369](https://github.com/chiba-ai-med/SBMFCV/commit/10d7369b3798096f30a7d899ded4b4b2f61d4dea))
+
 ## [1.3.0](https://github.com/chiba-ai-med/SBMFCV/compare/v1.2.0...v1.3.0) (2024-05-24)
 
 
