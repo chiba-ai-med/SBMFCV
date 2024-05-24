@@ -11,9 +11,12 @@ if(infile1 != "_"){
 	checkSameSize <- ncol(X_new) != nrow(initV)
 	if(checkSameSize){
 		stop("Column size of X_new and row size of V must be the same!!!")
-	}else{
-		file.create(outfile)
 	}
+	checkNegative <- length(which(X_new < 0)) != 0
+	if(checkNegative){
+		stop("Negative elements found!!!")
+	}
+	file.create(outfile)
 }else{
 	file.create(outfile)
 }

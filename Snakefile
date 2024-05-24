@@ -23,7 +23,6 @@ TRIALS = int(config["trials"])
 TRIAL_INDEX = [str(x) for x in list(range(1, TRIALS+1))]
 N_ITER_MAX = int(config["n_iter_max"])
 X_NEW_LIST = str(config["x_new_list"])
-print(X_NEW_LIST)
 if X_NEW_LIST == "None":
 	X_NEWS = "_"
 else:
@@ -44,7 +43,7 @@ rule all:
 		OUTDIR + '/U.tsv',
 		OUTDIR + '/V.tsv',
 		OUTDIR + '/BIN_DATA.tsv',
-		OUTDIR + '/U_new.txt'
+		OUTDIR + '/U_new.tsv'
 
 #############################################################
 # Non-negative Check
@@ -248,19 +247,19 @@ rule predict_u_new:
 		OUTDIR + '/sbmf/bestlambda.txt',
 		OUTDIR + '/V.tsv'
 	output:
-		OUTDIR + '/{x_new}/U_new.txt'
+		OUTDIR + '/{x_new}/U_new.tsv'
 	benchmark:
 		OUTDIR + '/benchmarks/predict_{x_new}.txt'
 	log:
 		OUTDIR + '/logs/predict_{x_new}.log'
 	shell:
-		'src/predict.sh {wildcards.x_new} {input} {output} {N_ITER_MAX} {BETA} > {log}'
+		'src/predict_u_new.sh {wildcards.x_new} {input} {output} {N_ITER_MAX} {BETA} > {log}'
 
 rule aggregate_u_new:
 	input:
-		expand(OUTDIR + '/{x_new}/U_new.txt', x_new=X_NEWS)
+		expand(OUTDIR + '/{x_new}/U_new.tsv', x_new=X_NEWS)
 	output:
-		OUTDIR + '/U_new.txt'
+		OUTDIR + '/U_new.tsv'
 	benchmark:
 		OUTDIR + '/benchmarks/aggregate_u_new.txt'
 	log:

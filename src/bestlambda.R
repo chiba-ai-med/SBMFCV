@@ -22,7 +22,7 @@ if(bin){
 	best_lambda <- avg[min_position, 1]
 
 	# Save
-	write.table(as.numeric(best_lambda), outfile, row.names=FALSE, col.names=FALSE, quote=FALSE)
+	write.table(10^as.numeric(best_lambda), outfile, row.names=FALSE, col.names=FALSE, quote=FALSE)
 }else{
 	write.table(1E-10, outfile, row.names=FALSE, col.names=FALSE, quote=FALSE)
 }
