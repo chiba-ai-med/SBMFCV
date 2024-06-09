@@ -1,6 +1,7 @@
 library("dcTensor")
 library("nnTensor")
 library("tidyverse")
+library("Matrix")
 
 # {0,1} percentage
 zero_one_percentage <- function(U){

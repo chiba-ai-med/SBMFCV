@@ -9,10 +9,15 @@ Bin_U <- 10^as.numeric(args[5])
 num.iter <- as.numeric(args[6])
 bin <- as.logical(args[7])
 beta <- as.numeric(args[8])
+input_sparse <- as.logical(args[9])
 
 if(bin){
 	# Loading
-	X <- as.matrix(read.table(infile1, header=FALSE))
+	if(input_sparse){
+		X <- 1.0 * as.matrix(readMM(infile1))
+	}else{
+		X <- as.matrix(read.table(infile1, header=FALSE))
+	}
 	J <- as.numeric(read.table(infile2, header=FALSE))
 
 	# NMF with binary regularization

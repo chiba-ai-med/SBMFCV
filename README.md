@@ -58,9 +58,12 @@ Next, perform `SBMFCV` by the `snakemake` command as follows.
 **Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=2 lambda_max=2 lambda_min=2 trials=2 n_iter_max=2.**
 
 ```bash
-snakemake -j 4 --config input=data/testdata.tsv outdir=output rank_min=2 \
+snakemake -j 4 --config input=data/testdata_small.tsv outdir=output rank_min=2 \
 rank_max=10 lambda_min=-10 lambda_max=10 trials=10 \
-n_iter_max=100 x_new_list="" bin=TRUE beta=2 ratio=20 --resources mem_gb=10 --use-singularity
+n_iter_max=100 x_new_list="" \
+input_sparse=FALSE output_sparse=FALSE \
+x_new_sparse=FALSE u_new_sparse=FALSE \
+bin=TRUE beta=2 ratio=20 --resources mem_gb=10 --use-singularity
 ```
 
 The meanings of all the arguments are below.
@@ -76,6 +79,10 @@ The meanings of all the arguments are below.
 - `trials`: Number of random trials (e.g., 50, mandatory)
 - `n_iter_max`: Number of iterations (e.g., 100, mandatory)
 - `x_new_list`: X_new file list to predict U_new values (Default value is "", which means no prediction is performed, optional)
+- `input_sparse`: Whether the input data is formatted as Matrix Market <MM> (Default value is FALSE)
+- `output_sparse`: Whether the output datda is formatted as Matrix Market <MM> (Default value is FALSE)
+- `x_new_sparse`: Whether the X_new data is formatted as Matrix Market <MM> (Default value is FALSE)
+- `u_new_sparse`: Whether the U_new is formatted as Matrix Market <MM> (Default value is FALSE)
 - `bin`: Whether the binarization of U is perfomed (Default value is TRUE, otherwise FALSE, optional)
 - `beta`: Parameter for Beta-divergence (Default value is 2, optional)
 - `ratio`: Sampling ratio of cross-validation (0 - 100, e.g., 20, mandatory)
@@ -90,10 +97,12 @@ If the `GridEngine` (`qsub` command) is available in your environment, you can a
 **Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=2 lambda_max=2 lambda_min=2 trials=2 n_iter_max=2.**
 
 ```bash
-snakemake -j 4 --config input=data/testdata.tsv outdir=output rank_min=2 \
+snakemake -j 4 --config input=data/testdata_small.tsv outdir=output rank_min=2 \
 rank_max=10 lambda_min=-10 lambda_max=10 trials=10 \
-n_iter_max=100 x_new_list="" bin=TRUE beta=2 ratio=20 \
---resources mem_gb=10 --use-singularity \
+n_iter_max=100 x_new_list="" \
+input_sparse=FALSE output_sparse=FALSE \
+x_new_sparse=FALSE u_new_sparse=FALSE \
+bin=TRUE beta=2 ratio=20 --resources mem_gb=10 --use-singularity \
 --cluster "qsub -l nc=4 -p -50 -r yes" --latency-wait 60
 ```
 
@@ -104,10 +113,12 @@ Likewise, if the `Slurm` (`sbatch` command) is available in your environment, yo
 **Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=2 lambda_max=2 lambda_min=2 trials=2 n_iter_max=2.**
 
 ```bash
-snakemake -j 4 --config input=data/testdata.tsv outdir=output rank_min=2 \
+snakemake -j 4 --config input=data/testdata_small.tsv outdir=output rank_min=2 \
 rank_max=10 lambda_min=-10 lambda_max=10 trials=10 \
-n_iter_max=100 x_new_list="" bin=TRUE beta=2 ratio=20 \
---resources mem_gb=10 --use-singularity \
+n_iter_max=100 x_new_list="" \
+input_sparse=FALSE output_sparse=FALSE \
+x_new_sparse=FALSE u_new_sparse=FALSE \
+bin=TRUE beta=2 ratio=20 --resources mem_gb=10 --use-singularity \
 --cluster "sbatch -n 4 --nice=50 --requeue" --latency-wait 60
 ```
 
@@ -118,11 +129,15 @@ If the `docker` command is available, the following command can be performed wit
 **Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=2 lambda_max=2 lambda_min=2 trials=2 n_iter_max=2.**
 
 ```bash
-docker run --rm -v $(pwd):/work ghcr.io/chiba-ai-med/sbmfcv:main \
--i /work/data/testdata.tsv -o /work/output \
---cores=4 --rank_min=2 --rank_max=10 \
---lambda_min=-10 --lambda_max=10 --trials=10 \
---n_iter_max=100 --x_new_list="" --bin=TRUE --beta=2 --ratio=20 --memgb=10
+docker run \
+--rm -v $(pwd):/work ghcr.io/chiba-ai-med/sbmfcv:main \
+-i /work/data/testdata_small.tsv -o /work/output \
+--cores=10 --rank_min=2 --rank_max=3 \
+--lambda_min=1 --lambda_max=10 --trials=2 \
+--n_iter_max=10 --x_new_list="" \
+--input_sparse=FALSE --output_sparse=FALSE \
+--x_new_sparse=FALSE --u_new_sparse=FALSE \
+--bin=TRUE --beta=2 --ratio=20 --memgb=10
 ```
 
 ## For Snakemake >=8 users

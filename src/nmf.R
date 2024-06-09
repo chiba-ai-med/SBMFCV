@@ -8,9 +8,14 @@ J <- as.numeric(args[4])
 num.iter <- as.numeric(args[5])
 beta <- as.numeric(args[6])
 ratio <- as.numeric(args[7])
+input_sparse <- as.logical(args[8])
 
 # Loading
-X <- as.matrix(read.table(infile, header=FALSE))
+if(input_sparse){
+	X <- 1.0 * as.matrix(readMM(infile))
+}else{
+	X <- as.matrix(read.table(infile, header=FALSE))
+}
 
 # Mask Matrix
 M <- kFoldMaskTensor(X, k=round(100/ratio),

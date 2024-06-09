@@ -28,12 +28,16 @@ if X_NEW_LIST == "None":
 else:
 	X_NEWS = pd.read_table(X_NEW_LIST, header=None)[0]
 
+INPUT_SPARSE = str(config["input_sparse"])
+OUTPUT_SPARSE = str(config["output_sparse"])
+X_NEW_SPARSE = str(config["x_new_sparse"])
+U_NEW_SPARSE = str(config["u_new_sparse"])
 BIN = str(config["bin"])
 BETA = int(config["beta"])
 RATIO = int(config["ratio"])
 
 # Docker Container
-container: 'docker://koki/sbmfcv_component:20230629'
+container: 'docker://koki/sbmfcv_component:20240604'
 
 # All Rules
 rule all:
@@ -43,7 +47,7 @@ rule all:
 		OUTDIR + '/U.tsv',
 		OUTDIR + '/V.tsv',
 		OUTDIR + '/BIN_DATA.tsv',
-		OUTDIR + '/U_new.tsv'
+		OUTDIR + '/U_new'
 
 #############################################################
 # Non-negative Check
@@ -58,7 +62,7 @@ rule check_input:
 	log:
 		OUTDIR + '/logs/check_input.log'
 	shell:
-		'src/check_input.sh {input} {output} >& {log}'
+		'src/check_input.sh {input} {output} {INPUT_SPARSE} >& {log}'
 
 #############################################################
 # Rank Estimation
@@ -75,7 +79,7 @@ rule nmf:
 	log:
 		OUTDIR + '/logs/nmf_{rank}_{t}.log'
 	shell:
-		'src/nmf.sh {input.in1} {output} {wildcards.rank} {N_ITER_MAX} {BETA} {RATIO} >& {log}'
+		'src/nmf.sh {input.in1} {output} {wildcards.rank} {N_ITER_MAX} {BETA} {RATIO} {INPUT_SPARSE} >& {log}'
 
 rule aggregate_nmf:
 	input:
@@ -129,7 +133,7 @@ rule sbmf:
 	log:
 		OUTDIR + '/logs/sbmf_{l}_{t}.log'
 	shell:
-		'src/sbmf.sh {input} {output} {wildcards.l} {N_ITER_MAX} {BIN} {BETA} >& {log}'
+		'src/sbmf.sh {input} {output} {wildcards.l} {N_ITER_MAX} {BIN} {BETA} {INPUT_SPARSE} >& {log}'
 
 rule aggregate_sbmf:
 	input:
@@ -183,7 +187,7 @@ rule bestrank_bestlambda_sbmf:
 	log:
 		OUTDIR + '/logs/bestrank_bestlambda_sbmf_{t}.log'
 	shell:
-		'src/bestrank_bestlambda_sbmf.sh {input} {output} {N_ITER_MAX} {BETA} >& {log}'
+		'src/bestrank_bestlambda_sbmf.sh {input} {output} {N_ITER_MAX} {BETA} {INPUT_SPARSE} >& {log}'
 
 rule aggregate_bestrank_bestlambda_sbmf:
 	input:
@@ -224,7 +228,7 @@ rule bindata_for_landscaper:
 	log:
 		OUTDIR + '/logs/bindata_for_landscaper.log'
 	shell:
-		'src/bindata_for_landscaper.sh {input} {output} > {log}'
+		'src/bindata_for_landscaper.sh {input} {output} {OUTPUT_SPARSE} > {log}'
 
 #############################################################
 # Prediction of U_new from X_new file list
@@ -239,7 +243,7 @@ rule check_x_new:
 	log:
 		OUTDIR + '/logs/check_x_new_{x_new}.log'
 	shell:
-		'src/check_x_new.sh {wildcards.x_new} {input} {output} >& {log}'
+		'src/check_x_new.sh {wildcards.x_new} {input} {output} {X_NEW_SPARSE} >& {log}'
 
 rule predict_u_new:
 	input:
@@ -247,22 +251,22 @@ rule predict_u_new:
 		OUTDIR + '/sbmf/bestlambda.txt',
 		OUTDIR + '/V.tsv'
 	output:
-		OUTDIR + '/{x_new}/U_new.tsv'
+		OUTDIR + '/{x_new}/U_new'
 	benchmark:
 		OUTDIR + '/benchmarks/predict_{x_new}.txt'
 	log:
 		OUTDIR + '/logs/predict_{x_new}.log'
 	shell:
-		'src/predict_u_new.sh {wildcards.x_new} {input} {output} {N_ITER_MAX} {BETA} > {log}'
+		'src/predict_u_new.sh {wildcards.x_new} {input} {output} {N_ITER_MAX} {BETA} {X_NEW_SPARSE} {U_NEW_SPARSE} > {log}'
 
 rule aggregate_u_new:
 	input:
-		expand(OUTDIR + '/{x_new}/U_new.tsv', x_new=X_NEWS)
+		expand(OUTDIR + '/{x_new}/U_new', x_new=X_NEWS)
 	output:
-		OUTDIR + '/U_new.tsv'
+		OUTDIR + '/U_new'
 	benchmark:
 		OUTDIR + '/benchmarks/aggregate_u_new.txt'
 	log:
 		OUTDIR + '/logs/aggregate_u_new.log'
 	shell:
-		'src/aggregate_u_new.sh {input} {output} > {log}'
+		'src/aggregate_u_new.sh {input} {output} {U_NEW_SPARSE} > {log}'
