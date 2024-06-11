@@ -1,8 +1,8 @@
 # dddd
 echo "Input (Dense) / Output (Dense) / X_new (Dense) / U_new (Dense)"
-snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_xdddd rank_min=2 \
+snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_dddd rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list.txt" \
+n_iter_max=10 \
 input_sparse=FALSE output_sparse=FALSE \
 x_new_sparse=FALSE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 \
@@ -10,9 +10,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # ddds
 echo "Input (Dense) / Output (Dense) / X_new (Dense) / U_new (Sparse)"
-snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_xddds rank_min=2 \
+snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_ddds rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list.txt" \
+n_iter_max=10 \
 input_sparse=FALSE output_sparse=FALSE \
 x_new_sparse=FALSE u_new_sparse=TRUE \
 bin=TRUE beta=2 ratio=20 \
@@ -20,9 +20,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # ddsd
 echo "Input (Dense) / Output (Dense) / X_new (Sparse) / U_new (Dense)"
-snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_xddsd rank_min=2 \
+snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_ddsd rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list_sparse.txt" \
+n_iter_max=10 \
 input_sparse=FALSE output_sparse=FALSE \
 x_new_sparse=TRUE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 \
@@ -30,9 +30,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # ddss
 echo "Input (Dense) / Output (Dense) / X_new (Sparse) / U_new (Sparse)"
-snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_xddss rank_min=2 \
+snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_ddss rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list_sparse.txt" \
+n_iter_max=10 \
 input_sparse=FALSE output_sparse=FALSE \
 x_new_sparse=TRUE u_new_sparse=TRUE \
 bin=TRUE beta=2 ratio=20 \
@@ -40,9 +40,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # dsdd
 echo "Input (Dense) / Output (Sparse) / X_new (Dense) / U_new (Dense)"
-snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_xdsdd rank_min=2 \
+snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_dsdd rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list.txt" \
+n_iter_max=10 \
 input_sparse=FALSE output_sparse=TRUE \
 x_new_sparse=FALSE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 \
@@ -50,9 +50,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # dsds
 echo "Input (Dense) / Output (Sparse) / X_new (Dense) / U_new (Sparse)"
-snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_xdsds rank_min=2 \
+snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_dsds rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list.txt" \
+n_iter_max=10 \
 input_sparse=FALSE output_sparse=TRUE \
 x_new_sparse=FALSE u_new_sparse=TRUE \
 bin=TRUE beta=2 ratio=20 \
@@ -60,9 +60,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # dssd
 echo "Input (Dense) / Output (Sparse) / X_new (Sparse) / U_new (Dense)"
-snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_xdssd rank_min=2 \
+snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_dssd rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list_sparse.txt" \
+n_iter_max=10 \
 input_sparse=FALSE output_sparse=TRUE \
 x_new_sparse=TRUE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 \
@@ -70,9 +70,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # dsss
 echo "Input (Dense) / Output (Sparse) / X_new (Sparse) / U_new (Sparse)"
-snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_xdsss rank_min=2 \
+snakemake -j 10 --config input=data/testdata_small.tsv outdir=output_dsss rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list_sparse.txt" \
+n_iter_max=10 \
 input_sparse=FALSE output_sparse=TRUE \
 x_new_sparse=TRUE u_new_sparse=TRUE \
 bin=TRUE beta=2 ratio=20 \
@@ -80,9 +80,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # sddd
 echo "Input (Sparse) / Output (Dense) / X_new (Dense) / U_new (Dense)"
-snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_xsddd rank_min=2 \
+snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_sddd rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list.txt" \
+n_iter_max=10 \
 input_sparse=TRUE output_sparse=FALSE \
 x_new_sparse=FALSE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 \
@@ -90,9 +90,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # sdds
 echo "Input (Sparse) / Output (Dense) / X_new (Dense) / U_new (Sparse)"
-snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_xsdds rank_min=2 \
+snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_sdds rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list.txt" \
+n_iter_max=10 \
 input_sparse=TRUE output_sparse=FALSE \
 x_new_sparse=FALSE u_new_sparse=TRUE \
 bin=TRUE beta=2 ratio=20 \
@@ -100,9 +100,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # sdsd
 echo "Input (Sparse) / Output (Dense) / X_new (Sparse) / U_new (Dense)"
-snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_xsdsd rank_min=2 \
+snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_sdsd rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list_sparse.txt" \
+n_iter_max=10 \
 input_sparse=TRUE output_sparse=FALSE \
 x_new_sparse=TRUE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 \
@@ -110,9 +110,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # sdss
 echo "Input (Sparse) / Output (Dense) / X_new (Sparse) / U_new (Sparse)"
-snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_xsdss rank_min=2 \
+snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_sdss rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list_sparse.txt" \
+n_iter_max=10 \
 input_sparse=TRUE output_sparse=FALSE \
 x_new_sparse=TRUE u_new_sparse=TRUE \
 bin=TRUE beta=2 ratio=20 \
@@ -120,9 +120,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # ssdd
 echo "Input (Sparse) / Output (Sparse) / X_new (Dense) / U_new (Dense)"
-snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_xssdd rank_min=2 \
+snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_ssdd rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list.txt" \
+n_iter_max=10 \
 input_sparse=TRUE output_sparse=TRUE \
 x_new_sparse=FALSE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 \
@@ -130,9 +130,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # ssds
 echo "Input (Sparse) / Output (Sparse) / X_new (Dense) / U_new (Sparse)"
-snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_xssds rank_min=2 \
+snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_ssds rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list.txt" \
+n_iter_max=10 \
 input_sparse=TRUE output_sparse=TRUE \
 x_new_sparse=FALSE u_new_sparse=TRUE \
 bin=TRUE beta=2 ratio=20 \
@@ -140,9 +140,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # sssd
 echo "Input (Sparse) / Output (Sparse) / X_new (Sparse) / U_new (Dense)"
-snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_xsssd rank_min=2 \
+snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_sssd rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list_sparse.txt" \
+n_iter_max=10 \
 input_sparse=TRUE output_sparse=TRUE \
 x_new_sparse=TRUE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 \
@@ -150,9 +150,9 @@ bin=TRUE beta=2 ratio=20 \
 
 # ssss
 echo "Input (Sparse) / Output (Sparse) / X_new (Sparse) / U_new (Sparse)"
-snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_xssss rank_min=2 \
+snakemake -j 10 --config input=data/testdata_sparse.tsv outdir=output_ssss rank_min=2 \
 rank_max=3 lambda_min=9 lambda_max=10 trials=2 \
-n_iter_max=10 x_new_list="data/x_new_list_sparse.txt" \
+n_iter_max=10 \
 input_sparse=TRUE output_sparse=TRUE \
 x_new_sparse=TRUE u_new_sparse=TRUE \
 bin=TRUE beta=2 ratio=20 \

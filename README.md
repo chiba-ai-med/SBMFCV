@@ -55,12 +55,12 @@ cd SBMFCV
 
 Next, perform `SBMFCV` by the `snakemake` command as follows.
 
-**Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=2 lambda_max=2 lambda_min=2 trials=2 n_iter_max=2.**
+**Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=3 lambda_max=9 lambda_min=10 trials=2 n_iter_max=2.**
 
 ```bash
 snakemake -j 4 --config input=data/testdata_small.tsv outdir=output rank_min=2 \
-rank_max=10 lambda_min=-10 lambda_max=10 trials=10 \
-n_iter_max=100 x_new_list="" \
+rank_max=10 lambda_min=1 lambda_max=10 trials=10 \
+n_iter_max=100 x_new_list="None" \
 input_sparse=FALSE output_sparse=FALSE \
 x_new_sparse=FALSE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 --resources mem_gb=10 --use-singularity
@@ -72,20 +72,20 @@ The meanings of all the arguments are below.
 - `--config`: Snakemake option to set [the configuration](https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html) (mandatory)
 - `input`: Input file (e.g., testdata.tsv, mandatory)
 - `outdir`: Output directory (e.g., output, mandatory)
-- `rank_min`: Lower limit of rank parameter to search (e.g., 2, which is used for the rank parameter J of dNMF, mandatory)
-- `rank_max`: Upper limit of rank parameter to search (e.g., 10, which is used for the rank parameter J of dNMF, mandatory)
-- `lambda_min`: Lower limit of lambda parameter to search (e.g., -10, which means 10^-10 is used for the binary regularization parameter Bin_U of dNMF, mandatory)
-- `lambda_max`: Upper limit of lambda parameter to search (e.g., -10, which means 10^10 is used for the binary regularization parameter Bin_U of dNMF, mandatory)
-- `trials`: Number of random trials (e.g., 50, mandatory)
-- `n_iter_max`: Number of iterations (e.g., 100, mandatory)
+- `rank_min`: Lower limit of rank parameter to search (Default value is 2, which is used for the rank parameter J of dNMF, optional)
+- `rank_max`: Upper limit of rank parameter to search (Default value is 10, which is used for the rank parameter J of dNMF, optional)
+- `lambda_min`: Lower limit of lambda parameter to search (Default value is 1, which means 10^1 is used for the binary regularization parameter Bin_U of dNMF, optional)
+- `lambda_max`: Upper limit of lambda parameter to search (Default value is 10, which means 10^10 is used for the binary regularization parameter Bin_U of dNMF, optional)
+- `trials`: Number of random trials (Default value is 10, optional)
+- `n_iter_max`: Number of iterations (Default value is 100, optional)
 - `x_new_list`: X_new file list to predict U_new values (Default value is "", which means no prediction is performed, optional)
-- `input_sparse`: Whether the input data is formatted as Matrix Market <MM> (Default value is FALSE)
-- `output_sparse`: Whether the output datda is formatted as Matrix Market <MM> (Default value is FALSE)
-- `x_new_sparse`: Whether the X_new data is formatted as Matrix Market <MM> (Default value is FALSE)
-- `u_new_sparse`: Whether the U_new is formatted as Matrix Market <MM> (Default value is FALSE)
-- `bin`: Whether the binarization of U is perfomed (Default value is TRUE, otherwise FALSE, optional)
+- `input_sparse`: Whether the input data is formatted as Matrix Market <MM> (Default value is FALSE, optional)
+- `output_sparse`: Whether the output data is formatted as Matrix Market <MM> (Default value is FALSE, optional)
+- `x_new_sparse`: Whether the X_new data is formatted as Matrix Market <MM> (Default value is FALSE, optional)
+- `u_new_sparse`: Whether the U_new is formatted as Matrix Market <MM> (Default value is FALSE, optional)
+- `bin`: Whether the binarization of U is perfomed (Default value is TRUE, optional)
 - `beta`: Parameter for Beta-divergence (Default value is 2, optional)
-- `ratio`: Sampling ratio of cross-validation (0 - 100, e.g., 20, mandatory)
+- `ratio`: Sampling ratio of cross-validation (Default value is 20, optional)
 - `--resources`: Snakemake option to control [resources](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#resources) (optional)
 - `mem_gb`: Memory usage (GB, e.g. 10, optional)
 - `--use-singularity`: Snakemake option to use Docker containers via [`Singularity`](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html) (mandatory)
@@ -94,12 +94,12 @@ The meanings of all the arguments are below.
 
 If the `GridEngine` (`qsub` command) is available in your environment, you can add the `qsub` command. Just adding the `--cluster` option, the jobs are submitted to multiple nodes and the computations are distributed.
 
-**Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=2 lambda_max=2 lambda_min=2 trials=2 n_iter_max=2.**
+**Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=3 lambda_min=9 lambda_max=10 trials=2 n_iter_max=2.**
 
 ```bash
 snakemake -j 4 --config input=data/testdata_small.tsv outdir=output rank_min=2 \
-rank_max=10 lambda_min=-10 lambda_max=10 trials=10 \
-n_iter_max=100 x_new_list="" \
+rank_max=10 lambda_min=1 lambda_max=10 trials=10 \
+n_iter_max=100 x_new_list="None" \
 input_sparse=FALSE output_sparse=FALSE \
 x_new_sparse=FALSE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 --resources mem_gb=10 --use-singularity \
@@ -110,12 +110,12 @@ bin=TRUE beta=2 ratio=20 --resources mem_gb=10 --use-singularity \
 
 Likewise, if the `Slurm` (`sbatch` command) is available in your environment, you can add the `sbatch` command after the `--cluster` option.
 
-**Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=2 lambda_max=2 lambda_min=2 trials=2 n_iter_max=2.**
+**Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=3 lambda_min=9 lambda_max=10 trials=2 n_iter_max=2.**
 
 ```bash
 snakemake -j 4 --config input=data/testdata_small.tsv outdir=output rank_min=2 \
-rank_max=10 lambda_min=-10 lambda_max=10 trials=10 \
-n_iter_max=100 x_new_list="" \
+rank_max=10 lambda_min=1 lambda_max=10 trials=10 \
+n_iter_max=100 x_new_list="None" \
 input_sparse=FALSE output_sparse=FALSE \
 x_new_sparse=FALSE u_new_sparse=FALSE \
 bin=TRUE beta=2 ratio=20 --resources mem_gb=10 --use-singularity \
@@ -126,7 +126,7 @@ bin=TRUE beta=2 ratio=20 --resources mem_gb=10 --use-singularity \
 
 If the `docker` command is available, the following command can be performed without installing any tools.
 
-**Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=2 lambda_max=2 lambda_min=2 trials=2 n_iter_max=2.**
+**Note: To check if the command is executable, set smaller parameters such as rank_min=2 rank_max=3 lambda_min=9 lambda_max=10 trials=2 n_iter_max=2.**
 
 ```bash
 docker run \
@@ -134,7 +134,7 @@ docker run \
 -i /work/data/testdata_small.tsv -o /work/output \
 --cores=10 --rank_min=2 --rank_max=3 \
 --lambda_min=1 --lambda_max=10 --trials=2 \
---n_iter_max=10 --x_new_list="" \
+--n_iter_max=10 --x_new_list="None" \
 --input_sparse=FALSE --output_sparse=FALSE \
 --x_new_sparse=FALSE --u_new_sparse=FALSE \
 --bin=TRUE --beta=2 --ratio=20 --memgb=10

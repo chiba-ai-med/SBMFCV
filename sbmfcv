@@ -12,13 +12,13 @@ Cross validation workflow of Semi-Binary Matrix Factorization (SBMF)
 
     -c, -cores,         --cores                 Number of cores to use Snakemake (Default value is 10, optional)
 
-    -l, -rank_min,      --rank_min              Lower limit of rank parameter to search (Default value is 2, which is used for the rank parameter J of dNMF, mandatory)
+    -l, -rank_min,      --rank_min              Lower limit of rank parameter to search (Default value is 2, which is used for the rank parameter J of dNMF, optional)
 
-    -u, -rank_max,      --rank_max              Upper limit of rank parameter to search (Default value is 10, which is used for the rank parameter J of dNMF, mandatory)
+    -u, -rank_max,      --rank_max              Upper limit of rank parameter to search (Default value is 10, which is used for the rank parameter J of dNMF, optional)
 
-    -b, -lambda_min,    --lambda_min            Lower limit of lambda parameter to search (Default value is -10, which means 10^-10 is used for the binary regularization parameter Bin_U of dNMF, mandatory)
+    -b, -lambda_min,    --lambda_min            Lower limit of lambda parameter to search (Default value is 1, which means 10^1 is used for the binary regularization parameter Bin_U of dNMF, optional)
 
-    -d, -lambda_max,    --lambda_max            Upper limit of lambda parameter to search (Default value is 10, which means 10^10 is used for the binary regularization parameter Bin_U of dNMF, mandatory)
+    -d, -lambda_max,    --lambda_max            Upper limit of lambda parameter to search (Default value is 10, which means 10^10 is used for the binary regularization parameter Bin_U of dNMF, optional)
 
     -t, -trials,        --trials                Number of random trials (Default value is 10, optional)
 
@@ -28,17 +28,17 @@ Cross validation workflow of Semi-Binary Matrix Factorization (SBMF)
 
     -s, -input_sparse,  --input_sparse          Whether the input data is formatted as Matrix Market <MM> (Default value is FALSE)
 
-    -f, -output_sparse, --output_sparse         Whether the output datda is formatted as Matrix Market <MM> (Default value is FALSE)
+    -f, -output_sparse, --output_sparse         Whether the output data is formatted as Matrix Market <MM> (Default value is FALSE, optional)
 
-    -r, -x_new_sparse,  --x_new_sparse          Whether the X_new data is formatted as Matrix Market <MM> (Default value is FALSE)
+    -r, -x_new_sparse,  --x_new_sparse          Whether the X_new data is formatted as Matrix Market <MM> (Default value is FALSE, optional)
 
-    -g, -u_new_sparse,  --u_new_sparse          Whether the U_new is formatted as Matrix Market <MM> (Default value is FALSE)
+    -g, -u_new_sparse,  --u_new_sparse          Whether the U_new is formatted as Matrix Market <MM> (Default value is FALSE, optional)
 
-    -n, -bin,           --bin                   Whether the binarization of U is perfomed (Default value is TRUE, otherwise FALSE, optional)
+    -n, -bin,           --bin                   Whether the binarization of U is perfomed (Default value is TRUE, optional)
 
     -p, -beta,          --beta                  Parameter for Beta-divergence (Default value is 2, optional)
 
-    -a, -ratio,         --ratio                 Sampling ratio of cross validation (0 - 100, Default value is 20, optional)
+    -a, -ratio,         --ratio                 Sampling ratio of cross-validation (Default value is 20, optional)
 
     -m, -memgb,         --memgb                 Memory usage (GB, Default value is 10, optional)
 
@@ -55,11 +55,11 @@ OUTDIR=""
 CORES=10
 RANK_MIN=2
 RANK_MAX=10
-LAMBDA_MIN=-10
+LAMBDA_MIN=1
 LAMBDA_MAX=10
 TRIALS=10
 N_ITER_MAX=100
-X_NEW_LIST=""
+X_NEW_LIST="None"
 INPUT_SPARSE="FALSE"
 OUTPUT_SPARSE="FALSE"
 X_NEW_SPARSE="FALSE"
@@ -68,7 +68,7 @@ BIN="TRUE"
 BETA=2
 RATIO=20
 MEMGB=10
-VERSION="v1.4.0"
+VERSION="v1.5.0"
 
 # Command Argument Parsing
 while getopts i:o:c:l:u:b:d:t:e:x:s:f:r:g:n:p:a:m:h-:v- opt; do
