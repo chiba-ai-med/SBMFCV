@@ -5,7 +5,6 @@ function catch {
 trap catch ERR
 
 # Perform SBMFCV
-# Perform SBMFCV
 docker run --rm -v $(pwd):/work ghcr.io/chiba-ai-med/sbmfcv:main \
 -i /work/data/negative.tsv -o /work/output_negative \
 --cores=10 --rank_min=2 --rank_max=3 \
