@@ -1,5 +1,41 @@
 # Changelog
 
+## [1.6.0](https://github.com/chiba-ai-med/SBMFCV/compare/v1.5.1...v1.6.0) (2024-07-05)
+
+
+### Features
+
+* beta parameter ([4c96636](https://github.com/chiba-ai-med/SBMFCV/commit/4c966360464d7775e2df3dafd31f4624f693c220))
+* First Commit ([f7e0fe4](https://github.com/chiba-ai-med/SBMFCV/commit/f7e0fe4b7144cfc1833448781ab8fba51554fdc8))
+* First Commit ([39e6fe7](https://github.com/chiba-ai-med/SBMFCV/commit/39e6fe7906824bbe8117146248fdec416b18fa2e))
+* First Commit ([ce9c278](https://github.com/chiba-ai-med/SBMFCV/commit/ce9c278f016747d82f014631369346ba165563c7))
+* First Commit ([22850e1](https://github.com/chiba-ai-med/SBMFCV/commit/22850e18511e035687468113358b7d7319f16759))
+* intermediate object in each rank/lambda ([1c32b28](https://github.com/chiba-ai-med/SBMFCV/commit/1c32b2810ceeffc193802aa10902b833353da5b3))
+* Optional Parameter ([e0c4787](https://github.com/chiba-ai-med/SBMFCV/commit/e0c47874ff1d332fb2ea3db2841d751004be7b8e))
+* Revert to v1.5.0 ([f9e5550](https://github.com/chiba-ai-med/SBMFCV/commit/f9e55502144d5f43e3cfeb5f3b13f2130fc172fb))
+* Sparse Format ([47d823e](https://github.com/chiba-ai-med/SBMFCV/commit/47d823e10b6e6ef37298056cfa2cb84e6b997468))
+* Sparse Format ([cd007ab](https://github.com/chiba-ai-med/SBMFCV/commit/cd007ab83680cdce76a4f611cb3f86410a833841))
+* X_new/U_new ([6205015](https://github.com/chiba-ai-med/SBMFCV/commit/6205015de0a65b016755fd6ac1f998e21b54b19a))
+* X_new/U_new ([71fa0f3](https://github.com/chiba-ai-med/SBMFCV/commit/71fa0f36a05d7c2e63b4cb5a2292724710473598))
+
+
+### Bug Fixes
+
+* aggregate ([3f8372d](https://github.com/chiba-ai-med/SBMFCV/commit/3f8372da3742cdd608349656b849537bebb7b4b4))
+* aggregate ([a96e150](https://github.com/chiba-ai-med/SBMFCV/commit/a96e150f4176ea897f9c9e0952cb897bfe4683c9))
+* debug of bestlambda ([dad13f3](https://github.com/chiba-ai-med/SBMFCV/commit/dad13f37a395644f4c6a747dbacaf823b25f8dcf))
+* Debug test ([12fcea8](https://github.com/chiba-ai-med/SBMFCV/commit/12fcea8b57e09d63abb22019fa66f6c2326de997))
+* Devert to v1.5.0 ([cfb1d1f](https://github.com/chiba-ai-med/SBMFCV/commit/cfb1d1f23577185e274dae7875530b1f975f0f4f))
+* Non-tab delimited File ([67f1ce4](https://github.com/chiba-ai-med/SBMFCV/commit/67f1ce4971eaed16a2952a809c4ae89414454d3e))
+* README ([a46ca35](https://github.com/chiba-ai-med/SBMFCV/commit/a46ca3503f19a7b70771da75b95d6372723c1bb4))
+* README ([c5e4b6b](https://github.com/chiba-ai-med/SBMFCV/commit/c5e4b6b119f22db1f8bbeddf08b2baaf5a4d73f2))
+* README ([36adb3c](https://github.com/chiba-ai-med/SBMFCV/commit/36adb3c5346a7d324215531e21bf56b9b7f72c80))
+* README ([caee719](https://github.com/chiba-ai-med/SBMFCV/commit/caee719110088ca4d679fc3e09225ae3824f3bef))
+* sbmfcv ([b62e448](https://github.com/chiba-ai-med/SBMFCV/commit/b62e4487d303aeeabd028c032e5fdb155e3a56bf))
+* sbmfcv ([5b04a08](https://github.com/chiba-ai-med/SBMFCV/commit/5b04a08400c175a0cef68ea2575a7990f25e94e5))
+* typo ([10d7369](https://github.com/chiba-ai-med/SBMFCV/commit/10d7369b3798096f30a7d899ded4b4b2f61d4dea))
+* typo ([7a5291e](https://github.com/chiba-ai-med/SBMFCV/commit/7a5291ec216b94231d0b975845ed3722c8e3a008))
+
 ## [1.5.1](https://github.com/chiba-ai-med/SBMFCV/compare/v1.5.0...v1.5.1) (2024-07-05)
 
 
