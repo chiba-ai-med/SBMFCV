@@ -68,7 +68,7 @@ BIN="TRUE"
 BETA=2
 RATIO=20
 MEMGB=10
-VERSION="v1.5.1"
+VERSION="v1.6.0"
 
 # Command Argument Parsing
 while getopts i:o:c:l:u:b:d:t:e:x:s:f:r:g:n:p:a:m:h-:v- opt; do
