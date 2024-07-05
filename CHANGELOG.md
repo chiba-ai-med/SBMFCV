@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/chiba-ai-med/SBMFCV/compare/v1.5.0...v1.5.1) (2024-07-05)
+
+
+### Bug Fixes
+
+* Devert to v1.5.0 ([cfb1d1f](https://github.com/chiba-ai-med/SBMFCV/commit/cfb1d1f23577185e274dae7875530b1f975f0f4f))
+
 ## [1.5.0](https://github.com/chiba-ai-med/SBMFCV/compare/v1.4.0...v1.5.0) (2024-06-11)
 
 
